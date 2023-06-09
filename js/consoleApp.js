@@ -30,12 +30,8 @@ class Console {
   const write = (s) => { document.write(s); };
   const elem = (id) => document.getElementById(id);
 
-  const renderApp = () => {
-    write('<div id="app">\n');
-    //renderHeader();
-    write('<textarea id="log" readonly></textarea>\n');
-    write('</div>\n');
-  };
+  // const renderApp = () => {
+  // };
 
   // renderApp();
   // const log = elem('log');
@@ -45,14 +41,33 @@ class Console {
   // };
 
   // ---
+class ConsoleApp {
+  constructor(renderHeader) {
+    this.consoleAreaId = 'consoleArea';
+    this.renderHeader = renderHeader ? renderHeader : () => {};
+    this.renderApp();
+    this.console = new Console(elem(this.consoleAreaId))
+  }
 
-  const formatNumber = (value, places) => {
+  renderApp () {
+    write('<div id="app">\n');
+    this.renderHeader();
+    write(`<textarea id="${this.consoleAreaId}" readonly></textarea>\n`);
+    write('</div>\n');
+  }
+
+  print(s) {
+    this.console.print(s)
+  }
+
+
+  formatNumber (value, places) {
     const len = value.toString().length;
     const spaces = Math.max(0, places - len);
     return `${' '.repeat(spaces)}${value}`;
   };
 
-  const formatDict = (dict) => {
+  formatDict (dict) {
     const aa = [];
     for (const k in dict) {
       const value = dict[k];
@@ -61,3 +76,5 @@ class Console {
     }
     return `{${aa.join(', ')}}`;
   };
+
+}
