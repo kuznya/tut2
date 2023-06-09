@@ -1,9 +1,39 @@
-  const elem = (id) => document.getElementById(id);
-  const log = elem('log');
+class Console {
+  constructor (area) {
+    this.lines = [];
+    this.area = area;
+  }
+  print(s) {
+    this.puts(s);
+    this.render();
+  }
+  puts(s) {
+    this.lines.push(s);
+  }
 
-  const putlines = (aa) => {
-    log.value = aa.join('\n');
-  };
+  putlines(lines) {
+    this.lines = this.lines.concat(lines)
+  }
+
+  setlines(lines) {
+    this.lines = lines
+  }
+  render() {
+    this.area.value = this.lines.join('\n')
+  }
+
+  clear() {
+    this.lines = [];
+    this.area.value = '';
+  }
+}
+
+  const elem = (id) => document.getElementById(id);
+  // const log = elem('log');
+  //
+  // const putlines = (aa) => {
+  //   log.value = aa.join('\n');
+  // };
 
   // ---
 

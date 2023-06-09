@@ -1,0 +1,13 @@
+<!doctype html>
+<head>
+<title>011 console hello</title>
+<link rel="stylesheet" href="js/console.css">
+<script src="js/console.js"></script>
+</head>
+<div id="app">
+  <textarea id="log" readonly></textarea>
+</div>
+<script>
+  const con = new Console(elem('log'));
+  con.print('hello!!!')
+</script>
