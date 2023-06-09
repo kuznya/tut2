@@ -27,8 +27,17 @@ class Console {
     this.area.value = '';
   }
 }
-
+  const write = (s) => { document.write(s); };
   const elem = (id) => document.getElementById(id);
+
+  const renderApp = () => {
+    write('<div id="app">\n');
+    //renderHeader();
+    write('<textarea id="log" readonly></textarea>\n');
+    write('</div>\n');
+  };
+
+  // renderApp();
   // const log = elem('log');
   //
   // const putlines = (aa) => {

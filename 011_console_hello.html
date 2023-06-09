@@ -3,11 +3,9 @@
 <title>011 console hello</title>
 <link rel="stylesheet" href="js/console.css">
 <script src="js/console.js"></script>
-</head>
-<div id="app">
-  <textarea id="log" readonly></textarea>
-</div>
 <script>
+  renderApp();
   const con = new Console(elem('log'));
-  con.print('hello!!!')
+  con.print('hello!!!');
+  console.log('yo-ho-ho');
 </script>
