@@ -1,29 +1,23 @@
-class Console {
+class cLog {
   constructor (area) {
-    this.lines = [];
     this.area = area;
   }
-  print(s) {
-    this.puts(s);
-    this.render();
+
+  topprint(s) {
+    const v = this.area.value;
+    this.area.value = v ? `${s}\n${v}` : s;
   }
-  puts(s) {
-    this.lines.push(s);
+
+  print(s) {
+    const v = this.area.value;
+    this.area.value += v ? `${v}\n${s}` : s;
   }
 
   putlines(lines) {
-    this.lines = this.lines.concat(lines)
-  }
-
-  setlines(lines) {
-    this.lines = lines
-  }
-  render() {
-    this.area.value = this.lines.join('\n')
+    this.area.value = lines.join('\n')
   }
 
   clear() {
-    this.lines = [];
     this.area.value = '';
   }
 }
@@ -43,21 +37,21 @@ class Console {
   // ---
 class ConsoleApp {
   constructor(renderHeader) {
-    this.consoleAreaId = 'consoleArea';
+    this.logAreaId = 'logArea';
     this.renderHeader = renderHeader ? renderHeader : () => {};
     this.renderApp();
-    this.console = new Console(elem(this.consoleAreaId))
+    this.log = new cLog(elem(this.logAreaId));
   }
 
   renderApp () {
     write('<div id="app">\n');
     this.renderHeader();
-    write(`<textarea id="${this.consoleAreaId}" readonly></textarea>\n`);
+    write(`<textarea id="${this.logAreaId}" readonly></textarea>\n`);
     write('</div>\n');
   }
 
   print(s) {
-    this.console.print(s)
+    this.log.print(s)
   }
 
 

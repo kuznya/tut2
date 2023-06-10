@@ -8,10 +8,10 @@
         text-decoration: none;
     }
     #app {
-        max-width: 1024px;
+        max-width: 600px;
         margin: 0 auto;
     }
-    #consoleArea {
+    #logArea {
         background: #eee;
         width: 100%;
         height: 400px;
