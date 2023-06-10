@@ -3,9 +3,61 @@
 <title>011 consoleApp hello</title>
 <link rel="stylesheet" href="js/consoleApp.css">
 <script src="js/consoleApp.js"></script>
+    <!--
+null - "Anonimous"
+'' - "Person with No Name"
+"Luke", -> I'm your father
+"Mattew" -> Render unto Caesar
+
+    -->
 <script>
-  const app = new ConsoleApp();
-  const name = prompt('введите ваше имя', 'Александр');
-  const ss = 'Привет, '+ name + '!';
-  app.print(ss);
+  const renderHeader = () => {
+  	return (
+      '<div class="header">' +
+      '<button id="btn" onclick="todo();">ToDo</button>' +
+      '</div>'
+    );
+  };
+
+  const app = new ConsoleApp(renderHeader);
+
+  const defaultName = 'John';
+
+  function todo() {
+		const inp = prompt('enter your name', defaultName);
+		let name;
+		if (inp === null) {
+			name = "Anonimous";
+    } else if (inp === '') {
+			name = "Person with No Name";
+    } else {
+			name = inp;
+    }
+
+		const greeting = 'Hello, ' + name + '!';
+		let comment;
+		switch (name) {
+			case defaultName:
+				comment = "Nice to be representative";
+				break;
+
+			case 'Luke':
+				comment = "I'm your Father...";
+				break;
+
+      case 'Mattew':
+				comment = "Rende unto Caesar...";
+				break;
+
+      case '':
+      	break;
+
+      default:
+      	comment = "Nice to meet You."
+    }
+		app.print(greeting);
+		app.print(comment);
+		app.print('');
+	}
+	todo();
 </script>

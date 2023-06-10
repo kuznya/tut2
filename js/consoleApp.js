@@ -10,7 +10,7 @@ class cLog {
 
   print(s) {
     const v = this.area.value;
-    this.area.value += v ? `${v}\n${s}` : s;
+    this.area.value = v ? `${v}\n${s}` : s;
   }
 
   putlines(lines) {
@@ -39,13 +39,13 @@ class ConsoleApp {
   constructor(renderHeader) {
     this.logAreaId = 'logArea';
     this.renderHeader = renderHeader ? renderHeader : () => {};
-    this.renderApp();
+    this.drawApp();
     this.log = new cLog(elem(this.logAreaId));
   }
 
-  renderApp () {
+  drawApp () {
     write('<div id="app">\n');
-    this.renderHeader();
+    write(this.renderHeader());
     write(`<textarea id="${this.logAreaId}" readonly></textarea>\n`);
     write('</div>\n');
   }
@@ -64,6 +64,9 @@ class ConsoleApp {
   formatDict (dict) {
     const aa = [];
     for (const k in dict) {
+      if (!dict.hasOwnProperty(k)) {
+        continue;
+      }
       const value = dict[k];
       let repr = typeof value === 'string' ? `"${value}"` : value;
       aa.push(`${k}: ${repr}`);
